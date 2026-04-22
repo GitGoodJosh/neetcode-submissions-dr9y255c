@@ -9,21 +9,16 @@ class MyLinkedList(object):
         self.head = None
         self.size = 0
 
-    def checkindexError(self,index):
-        if index < 0 or index > self.size:
-            return True
-        else:
-            return False
-
 
     def get(self, index):
-        if self.checkindexError(index):
+        if index < 0 or index >= self.size:
+            print("X")
             return -1
         
         current = self.head
         for _ in range(0,index):
             current = current.next
-        
+        print(current.val)
         return current.val
         
 
@@ -36,7 +31,7 @@ class MyLinkedList(object):
         
 
     def addAtIndex(self, index, val):
-        if self.checkindexError(index):
+        if index < 0 or index > self.size:
             return -1
         
         current = self.head
@@ -55,7 +50,7 @@ class MyLinkedList(object):
 
     def deleteAtIndex(self, index):
         
-        if self.checkindexError(index):
+        if index < 0 or index >= self.size:
             return -1
 
         current = self.head
@@ -67,14 +62,3 @@ class MyLinkedList(object):
             current.next = current.next.next
         
         self.size -= 1
-
-        
-
-
-# Your MyLinkedList object will be instantiated and called as such:
-# obj = MyLinkedList()
-# param_1 = obj.get(index)
-# obj.addAtHead(val)
-# obj.addAtTail(val)
-# obj.addAtIndex(index,val)
-# obj.deleteAtIndex(index)
